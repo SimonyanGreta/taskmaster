@@ -1,4 +1,5 @@
 import './App.css'
+import {Button} from "./shared/ui/Button";
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <div className="card">
           Task Master
       </div>
+      <Button>Select</Button>
     </>
   )
 }
