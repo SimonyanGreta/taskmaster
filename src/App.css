@@ -3,4 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  --input-border-color: #c6a9a9;
+  --input-background-color: #cccccc;
+  --input-text-color: #792929;
 }
