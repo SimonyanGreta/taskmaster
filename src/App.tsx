@@ -14,7 +14,9 @@ function App() {
       <InputField
         value={task}
         onChange={setTask}
-        placeholder="Title"
+        title="Title"
+        placeholder="placeholder"
+        required
       />
       <Button>Select</Button>
     </>
