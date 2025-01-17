@@ -2,6 +2,7 @@ import './App.css'
 import {Button} from "./shared/ui/Button";
 import {InputField} from "./shared/ui/InputField";
 import {useState} from "react";
+import {TodoItem} from "./components";
 
 function App() {
   const [task, setTask] = useState('');
@@ -19,6 +20,10 @@ function App() {
         required
       />
       <Button>Select</Button>
+
+      <div>
+        <TodoItem />
+      </div>
     </>
   )
 }

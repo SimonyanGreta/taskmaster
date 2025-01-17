@@ -11,11 +11,12 @@ type InputFieldProps = {
   readonly?: boolean;
   required?: boolean;
   disable?: boolean;
+  style?: any;
 };
 
-export const InputField: React.FC<InputFieldProps> = ({ value, type = 'text', onChange = () => {}, onBlur, placeholder = '', title, readonly = false, required, disable = false }) => {
+export const InputField: React.FC<InputFieldProps> = ({ value, type = 'text', onChange = () => {}, onBlur, placeholder = '', title, readonly = false, required, disable = false, style }) => {
   return (
-    <div className={styles.InputWrapper}>
+    <div className={styles.InputWrapper} style={style}>
       <div style={{display: 'flex', alignItems: 'center'}}>
         {title && <span className={styles.placeholder}>{title}</span>}
         {required && <span style={{color: 'red'}}>*</span>}
@@ -37,3 +38,4 @@ export const InputField: React.FC<InputFieldProps> = ({ value, type = 'text', on
     </div>
   );
 };
+
