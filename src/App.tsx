@@ -3,6 +3,7 @@ import {Button} from "./shared/ui/Button";
 import {InputField} from "./shared/ui/InputField";
 import {useState} from "react";
 import {TodoItem} from "./components";
+import Checkbox from "./shared/ui/Checkbox/Checkbox.tsx";
 
 function App() {
   const [task, setTask] = useState('');
@@ -24,6 +25,7 @@ function App() {
       <div>
         <TodoItem />
       </div>
+      <Checkbox onChange={() => {}} checked={true} />
     </>
   )
 }

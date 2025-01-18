@@ -3,6 +3,12 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  --white: #cccccc;
+  --black: #000000;
+  --lighter: #e1e1e1;
+  --gray-border: #dce2eb;
+  --gray-super: #767b88;
+  --accent: #ad0f0f;
   --input-border-color: #c6a9a9;
   --input-background-color: #cccccc;
   --input-text-color: #792929;
