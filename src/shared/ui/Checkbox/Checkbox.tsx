@@ -11,7 +11,7 @@ interface CheckboxProps {
   onClick?: any;
 }
 
-export default function Checkbox({
+export const Checkbox = ({
     label = null,
     disable = false,
     leftLabel = false,
@@ -19,7 +19,7 @@ export default function Checkbox({
     addClass = '',
     checked = false,
     onClick = () => {},
-}: CheckboxProps) {
+}: CheckboxProps)=> {
   return (
     <label
       className={[

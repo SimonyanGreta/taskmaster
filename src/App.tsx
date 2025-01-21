@@ -3,10 +3,16 @@ import {Button} from "./shared/ui/Button";
 import {InputField} from "./shared/ui/InputField";
 import {useState} from "react";
 import {TodoItem} from "./components";
-import Checkbox from "./shared/ui/Checkbox/Checkbox.tsx";
+import {Checkbox} from "./shared/ui/Checkbox";
+import {Drawer} from "./shared/ui/Drawer";
 
 function App() {
   const [task, setTask] = useState('');
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setDrawerOpen((prev) => !prev);
+  };
 
   return (
     <>
@@ -23,9 +29,13 @@ function App() {
       <Button>Select</Button>
 
       <div>
-        <TodoItem />
+        <TodoItem/>
       </div>
-      <Checkbox onChange={() => {}} checked={true} />
+      <Checkbox onChange={() => {}} checked={true}/>
+
+      <Drawer isOpen={isDrawerOpen} onToggle={toggleDrawer}>
+        <h2>Содержимое</h2>
+      </Drawer>
     </>
   )
 }
