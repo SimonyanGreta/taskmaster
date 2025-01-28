@@ -26,7 +26,7 @@ function App() {
         placeholder="placeholder"
         required
       />
-      <Button>Select</Button>
+      <Button size="small">Select</Button>
 
       <div>
         <TodoItem/>
