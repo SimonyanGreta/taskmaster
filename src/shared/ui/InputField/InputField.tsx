@@ -1,4 +1,5 @@
 import React from 'react';
+import {FieldError} from "react-hook-form";
 import styles from './Input.module.scss';
 
 type InputFieldProps = {
@@ -11,10 +12,25 @@ type InputFieldProps = {
   readonly?: boolean;
   required?: boolean;
   disable?: boolean;
+  errors?: FieldError;
+  errorMessage?: string | undefined;
   style?: any;
 };
 
-export const InputField: React.FC<InputFieldProps> = ({ value, type = 'text', onChange = () => {}, onBlur, placeholder = '', title, readonly = false, required, disable = false, style }) => {
+export const InputField: React.FC<InputFieldProps> = ({
+  value,
+  type = 'text', 
+  onChange = () => {}, 
+  onBlur, 
+  placeholder = '',
+  title, 
+  readonly = false,
+  required,
+  disable = false, 
+  errors,
+  errorMessage,
+  style 
+}) => {
   return (
     <div className={styles.InputWrapper} style={style}>
       <div style={{display: 'flex', alignItems: 'center'}}>
@@ -33,9 +49,18 @@ export const InputField: React.FC<InputFieldProps> = ({ value, type = 'text', on
           placeholder={placeholder}
           disabled={disable}
         />
-        {!readonly && <div className={styles.caret}></div>}
+        {!readonly && <div className={styles.caret} />}
       </div>
+      {errors ? (
+        <div
+          className={[
+            styles['text-input__caption'],
+            styles['text-input__caption-full'],
+          ].join(' ')}
+        >
+          {errorMessage}
+        </div>
+      ) : null}
     </div>
   );
 };
-
