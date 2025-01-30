@@ -5,6 +5,7 @@ import {useState} from "react";
 import {TodoItem} from "./components";
 import {Checkbox} from "./shared/ui/Checkbox";
 import {Drawer} from "./shared/ui/Drawer";
+import LoginForm from "./pages/LogIn";
 
 function App() {
   const [task, setTask] = useState('');
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+      <LoginForm />
       <div className="card">
         Task Master
       </div>
