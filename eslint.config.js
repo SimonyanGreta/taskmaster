@@ -25,12 +25,17 @@ export default tseslint.config(
         'warn',
         { allowConstantExport: true },
       ],
+      'react/jsx-max-props-per-line': [
+        'error',
+        { maximum: 2, when: 'always' },
+      ],
       'indent': ['error', 2],
       'react/jsx-indent': ['error', 2],
       'react/jsx-indent-props': ['error', 2],
       'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
       'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
       'react/self-closing-comp': 'error',
+
     },
   },
 )
