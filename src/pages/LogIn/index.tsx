@@ -3,6 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {InputField} from "../../shared/ui/InputField";
 import {Button} from "../../shared/ui/Button";
+import {useDispatch} from "react-redux";
+import {loginActions} from "../../features/login/loginSlice.ts";
 
 const schema = z.object({
   email: z.string({ required_error: "Email обязателен" }).email("Введите корректный email"),
@@ -18,7 +20,10 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema),  mode: "onTouched"  });
 
+  const dispatch = useDispatch();
+
   const onSubmit = async (data: FormData) => {
+    dispatch(loginActions.setCredentials({username: data.email, password: data.password, isLoading: false}));
     try {
       console.log("Отправка данных:", data);
     } catch (error) {
@@ -51,7 +56,7 @@ export default function LoginForm() {
             <InputField
               type="password"
               title="Пароль"
-              errors={errors.email}
+              errors={errors.password}
               errorMessage={errors.password?.message}
               {...field}
             />
