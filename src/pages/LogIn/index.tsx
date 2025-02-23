@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import {InputField} from "../../shared/ui/InputField";
 import {Button} from "../../shared/ui/Button";
+import { useNavigate } from "react-router-dom";
 
 const schema = z.object({
   email: z.string({ required_error: "Email обязателен" }).email("Введите корректный email"),
@@ -17,11 +18,12 @@ export default function LoginForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema),  mode: "onTouched"  });
+  const navigate = useNavigate();
 
   const onSubmit = async (data: FormData) => {
     try {
       console.log("Отправка данных:", data);
-
+      navigate("/tasks");
     } catch (error) {
       console.error("Ошибка авторизации", error);
     }
