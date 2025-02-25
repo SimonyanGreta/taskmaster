@@ -1,28 +1,43 @@
-import {Controller, useForm} from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import {InputField} from "../../shared/ui/InputField";
-import {Button} from "../../shared/ui/Button";
 import { useNavigate } from "react-router-dom";
 
+import { InputField } from "../../shared/ui/InputField";
+import { Button } from "../../shared/ui/Button";
+import { useAuth } from "../../app/context/AuthContext";
+
 const schema = z.object({
-  email: z.string({ required_error: "Email обязателен" }).email("Введите корректный email"),
-  password: z.string({ required_error: "Пароль обязателен" }).min(6, "Пароль должен содержать минимум 6 символов"),
+  email: z.string().email("Введите корректный email"),
+  password: z.string().min(6, "Пароль должен содержать минимум 6 символов"),
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function LoginForm() {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({ resolver: zodResolver(schema),  mode: "onTouched"  });
+  const authContext = useAuth();
+
   const navigate = useNavigate();
+
+  const { control, handleSubmit, formState: { errors } } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    mode: "onTouched"
+  });
 
   const onSubmit = async (data: FormData) => {
     try {
-      console.log("Отправка данных:", data);
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Ошибка авторизации");
+      }
+
+      const result = await response.json();
+      authContext?.login({ email: data.email, token: result.token });
       navigate("/tasks");
     } catch (error) {
       console.error("Ошибка авторизации", error);
